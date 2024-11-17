@@ -16,17 +16,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Member member;
+    @Column
+    private Long studentId;
 
     @Column(nullable = false)
     private LocalDateTime reservationTime;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime startTime;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime endTime;
 
     @ManyToOne

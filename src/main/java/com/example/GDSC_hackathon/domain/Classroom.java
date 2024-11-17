@@ -1,5 +1,6 @@
 package com.example.GDSC_hackathon.domain;
 
+import ch.qos.logback.core.model.INamedModel;
 import com.example.GDSC_hackathon.enumClass.ClassroomType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,4 +24,16 @@ public class Classroom {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ClassroomType type;
+
+    @Column
+    private Integer totalSeat;
+
+    @Column
+    private Integer reservedSeat;
+
+    public void changeReservecdSeat(Integer n){
+        this.reservedSeat += n;
+    }
+
+
 }
