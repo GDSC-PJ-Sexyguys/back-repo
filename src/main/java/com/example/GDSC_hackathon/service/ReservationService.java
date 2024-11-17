@@ -30,10 +30,9 @@ public class ReservationService {
         //대강의실(타입확인 필)
         if(resevedClassroom.getType() == ClassroomType.LARGE){
             reservation.setStartTime(LocalDateTime.now());
+            reservation.setEndTime(reservation.getStartTime().plusHours(6));
         }
         //소강의실
-
-        reservation.setEndTime(reservation.getStartTime().plusHours(6));
         //classroom update
         classroomService.updateClassroom(resevedClassroom, 1);
         //seatupdate
