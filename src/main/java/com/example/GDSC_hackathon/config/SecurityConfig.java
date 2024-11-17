@@ -18,18 +18,30 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @OpenAPIDefinition(
         info = @Info(
-                title = "API 문서",
-                description = "API 명세서",
+                title = "강의실 예약 시스템 API",
+                description = "강의실 예약 시스템 API 명세서",
                 version = "v1"
         )
 )
 public class SecurityConfig {
 
-    // SpringDoc OpenAPI UI 경로
     private static final String[] WHITE_LIST = {
+            /* Swagger UI v3 */
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/api/**"    // API 경로도 허용
+            "/swagger-ui.html",
+
+            /* H2 Console */
+            "/h2-console/**",
+
+            /* API 경로 */
+            "/api/**",
+
+            /* 정적 리소스 */
+            "/css/**", "/js/**", "/images/**",
+
+            /* 기타 공개 경로 */
+            "/", "/error"
     };
 
     @Bean
@@ -38,21 +50,26 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/h2-console/**")
+                        .disable()
+                )
+                .headers(headers -> headers
+                        .frameOptions(frameOptions -> frameOptions.disable())
+                )
                 .cors(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizeRequest ->
-                        authorizeRequest
-                                .requestMatchers(WHITE_LIST).permitAll()
-                                .requestMatchers("/**").permitAll()
-                                .anyRequest().authenticated()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(WHITE_LIST).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .sessionManagement(sessionManagement ->
-                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .build();
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+
+        return http.build();
     }
 }
