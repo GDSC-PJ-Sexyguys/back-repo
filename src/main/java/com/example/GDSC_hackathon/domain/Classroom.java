@@ -28,12 +28,5 @@ public class Classroom {
     @Column
     private Integer totalSeat;
 
-    @Column
-    private Integer reservedSeat;
-
-    public void changeReservecdSeat(Integer n){
-        this.reservedSeat += n;
-    }
-
 
 }

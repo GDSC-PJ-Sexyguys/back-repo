@@ -3,12 +3,12 @@ spring:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
     username: admin
-    password:       # ????? ?????
+    password:       # 비밀번호는 비워둡니다
 
   h2:
     console:
-      enabled: true      # H2 ?? ???
-      path: /h2-console  # ?? ??
+      enabled: true      # H2 콘솔 활성화
+      path: /h2-console  # 콘솔 경로
       settings:
         web-allow-others: false
 
@@ -28,4 +28,4 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
-    org.springframework.security: debug  # ???? ??? ?? ?? ??
+    org.springframework.security: debug  # 시큐리티 로그를 보기 위해 추가

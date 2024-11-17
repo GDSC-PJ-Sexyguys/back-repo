@@ -30,9 +30,4 @@ public class SeatService {
         return seatRepo.findAll();
     }
 
-    // Update Seat (partial update example)
-    public Seat updateSeat(Seat updatedSeat, boolean isReserved) {
-        updatedSeat.setReserved(isReserved);
-        return seatRepo.save(updatedSeat);
-    }
 }

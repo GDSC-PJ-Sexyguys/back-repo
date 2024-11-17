@@ -23,6 +23,4 @@ public class Seat {
     @Column(nullable = false)
     private boolean hasSocket;
 
-    @Column(nullable = false)
-    private boolean isReserved;
 }
