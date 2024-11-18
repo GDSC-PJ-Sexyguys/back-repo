@@ -17,7 +17,7 @@ public class Member {
 
     @Column(unique = true, nullable = false)
     private String username; // 아이디
-ㄷ
+
     @Column(nullable = false)
     private String password;
 }
