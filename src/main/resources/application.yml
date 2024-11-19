@@ -10,7 +10,7 @@ spring:
       enabled: true      # H2 콘솔 활성화
       path: /h2-console  # 콘솔 경로
       settings:
-        web-allow-others: false
+        web-allow-others: true
 
   jpa:
     hibernate:
