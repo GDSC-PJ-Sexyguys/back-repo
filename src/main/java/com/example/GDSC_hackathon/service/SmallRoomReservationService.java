@@ -57,6 +57,7 @@ public class SmallRoomReservationService {
                 .roomName(request.roomName())
                 .startTime(request.startTime())
                 .endTime(request.endTime())
+                .partySize(request.partySize())
                 .build();
 
         SmallRoomReservationHistory savedReservation = reservationRepository.save(reservation);
@@ -95,7 +96,8 @@ public class SmallRoomReservationService {
                 reservation.getBuildingName(),
                 reservation.getRoomName(),
                 reservation.getStartTime(),
-                reservation.getEndTime()
+                reservation.getEndTime(),
+                reservation.getPartySize()
         );
     }
 
@@ -111,7 +113,8 @@ public class SmallRoomReservationService {
                         reservation.getBuildingName(),
                         reservation.getRoomName(),
                         reservation.getStartTime(),
-                        reservation.getEndTime()
+                        reservation.getEndTime(),
+                        reservation.getPartySize()
                 ))
                 .toList();
     }
@@ -134,7 +137,8 @@ public class SmallRoomReservationService {
                         reservation.getBuildingName(),
                         reservation.getRoomName(),
                         reservation.getStartTime(),
-                        reservation.getEndTime()))
+                        reservation.getEndTime(),
+                        reservation.getPartySize()))
                 .toList();
     }
 
@@ -148,7 +152,8 @@ public class SmallRoomReservationService {
                         reservation.getBuildingName(),
                         reservation.getRoomName(),
                         reservation.getStartTime(),
-                        reservation.getEndTime()
+                        reservation.getEndTime(),
+                        reservation.getPartySize()
                 ))
                 .toList();
     }
