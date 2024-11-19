@@ -63,14 +63,14 @@ public class LargeRoomTicketService {
         );
     }
 
-    // LargeRoomTicketService.java에 추가
-    public List<Integer> getOccupiedSeats(String buildingName, String roomName) {
-        deleteTicketIfExpired();  // 만료된 티켓 먼저 삭제
+    public List<LargeRoomTicketResponse> getOccupiedSeats(String buildingName, String roomName) {
+        deleteTicketIfExpired();
         return largeRoomTicketRepository
                 .findByBuildingNameAndRoomName(buildingName, roomName)
                 .stream()
-                .map(LargeLectureRoomTicketHistory::getSeatNumber)
+                .map(largeRoomTicket -> new LargeRoomTicketResponse(
+                        largeRoomTicket.getId(), largeRoomTicket.getStudentId(), largeRoomTicket.getBuildingName(), largeRoomTicket.getRoomName(), largeRoomTicket.getSeatNumber(), largeRoomTicket.getStartTime(), largeRoomTicket.getEndTime()
+                ))
                 .toList();
     }
-
 }

@@ -29,10 +29,12 @@ public class LargeRoomTicketController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Integer>> getOccupiedSeats(
+    public ResponseEntity<List<LargeRoomTicketResponse>> getOccupiedSeats(
             @RequestParam String buildingName,
             @RequestParam String roomName) {
-        List<Integer> occupiedSeats = largeRoomTicketService.getOccupiedSeats(buildingName, roomName);
+        List<LargeRoomTicketResponse> occupiedSeats = largeRoomTicketService.getOccupiedSeats(buildingName, roomName);
         return ResponseEntity.ok(occupiedSeats);
     }
+
+
 }
