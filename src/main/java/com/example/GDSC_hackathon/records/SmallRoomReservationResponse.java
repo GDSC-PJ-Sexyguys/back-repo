@@ -8,5 +8,6 @@ public record SmallRoomReservationResponse(
         String buildingName,
         String roomName,
         LocalDateTime startTime,
-        LocalDateTime endTime
+        LocalDateTime endTime,
+        Integer partySize
 ) {}
