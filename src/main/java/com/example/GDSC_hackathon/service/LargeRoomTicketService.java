@@ -69,7 +69,7 @@ public class LargeRoomTicketService {
                 .findByBuildingNameAndRoomName(buildingName, roomName)
                 .stream()
                 .map(largeRoomTicket -> new LargeRoomTicketResponse(
-                        largeRoomTicket.getId(), largeRoomTicket.getStudentId(), largeRoomTicket.getBuildingName(), largeRoomTicket.getRoomName(), largeRoomTicket.getSeatNumber(), largeRoomTicket.getStartTime(), largeRoomTicket.getEndTime()
+                        largeRoomTicket.getId(), largeRoomTicket.getStudentId(), largeRoomTicket.getBuildingName(), largeRoomTicket.getRoomName(), largeRoomTicket.getSeatNumber(), largeRoomTicket.getStartTime().plusHours(9), largeRoomTicket.getEndTime().plusHours(9)
                 ))
                 .toList();
     }
